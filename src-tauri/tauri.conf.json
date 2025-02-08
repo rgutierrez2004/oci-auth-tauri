@@ -1,0 +1,73 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "identifier": "com.oci-auth.dev",
+  "productName": "OCI Auth Tauri",
+  "version": "0.1.0",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:3000",
+    "frontendDist": "../out"
+  },
+  "app": {
+    "security": {
+      "csp": null,
+      "dangerousDisableAssetCspModification": true
+    },
+    "windows": [
+      {
+        "title": "OCI Auth Tauri",
+        "width": 800,
+        "height": 600
+      }
+    ]
+  },
+  "bundle": {
+    "active": true,
+    "icon": ["icons/128x128.png"],
+    "resources": []
+  },
+  "plugins": {
+    "fs": {
+      "scope": {
+        "allow": ["$APPLOG/*", "$APPLOCALDATA/*"]
+      }
+    },
+    "cli": {
+      "description": "OCI Auth Tauri CLI",
+      "args": [
+        {
+          "name": "get-config",
+          "short": "g",
+          "description": "Get current configuration",
+          "takesValue": false
+        },
+        {
+          "name": "log-level",
+          "short": "l",
+          "description": "Set log level (trace, debug, info, warn, error, off)",
+          "takesValue": true,
+          "possibleValues": ["trace", "debug", "info", "warn", "error", "off"]
+        },
+        {
+          "name": "log-size",
+          "short": "s",
+          "description": "Set maximum log file size in MB (minimum: 1)",
+          "takesValue": true
+        },
+        {
+          "name": "log-count",
+          "short": "n",
+          "description": "Set number of log files to keep (minimum: 1)",
+          "takesValue": true
+        },
+        {
+          "name": "clear-config",
+          "short": "c",
+          "description": "Clear all configuration (reset to default)",
+          "takesValue": false
+        }
+      ]
+    }
+  }
+}
